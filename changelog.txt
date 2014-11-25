@@ -1,0 +1,19 @@
+===================PROJECT PROPERTIES===========================
+
+webtheme1
+
+	* root folder 	=> modules/webtheme1
+	* helpers	=> helpers/webtheme1
+	* assets	=> assets/webtheme1
+
+================================================================
+
+PDF 
+
+	* root folder	=> modules/PDF
+	* libraries	=> libraries/PDF
+	* assets	=> assets/PDF
+	* helpers	=> helpers/pdf_helper.php
+
+
+

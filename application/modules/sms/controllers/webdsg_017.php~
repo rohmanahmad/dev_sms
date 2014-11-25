@@ -1,0 +1,30 @@
+<?php
+class webdsg_017 extends CI_controller{
+
+function __construct(){
+parent::__construct();
+$this->load->helper(array('webdsg_017','url'));
+}
+function index(){
+		$this->load->view('header');
+		$this->load->view('body');
+		$this->load->view('footer');
+
+	}function exsample(){
+		$this->load->view('header');
+		$this->load->view('body_exsample');
+		$this->load->view('footer');
+
+	}
+
+
+
+}
+
+
+
+
+
+
+
+?>

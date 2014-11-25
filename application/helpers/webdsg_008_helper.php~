@@ -1,0 +1,20 @@
+<?php
+function get_base_url(){
+ return base_url('assets/websdg_008/');
+}
+function get_image($filename){
+return base_url('assets/websdg_008/images/'.$filename);
+}
+function get_css($filename){
+return base_url('assets/websdg_008/css/'.$filename);
+}
+function get_js($filename){
+return base_url('assets/websdg_008/js/'.$filename);
+}
+function get_site_url($pagename=""){
+return site_url ('webdsg_008/'.$pagename);
+
+}
+
+
+?>

@@ -1,0 +1,16 @@
+<?php
+function get_base_url(){
+ return base_url('assets/websdg_014/');
+}
+
+function get_css($filename){
+return base_url('assets/websdg_014/css/'.$filename);
+}
+
+function get_site_url($pagename=""){
+return site_url ('webdsg_014/'.$pagename);
+
+}
+
+
+?>
