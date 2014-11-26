@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Selamat Datang</title>
+	<title>Welcome to CodeIgniter</title>
 
 	<style type="text/css">
 

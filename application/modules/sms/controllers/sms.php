@@ -3,12 +3,16 @@ class sms extends CI_controller{
 
 function __construct(){
 	parent::__construct();
-	$this->helper(array('sms'));
+	$this->helper(array('sms','url','html'));
 	$this->load_model("sms_model");
 }
 
 function load_form(){
 	$this->load->helper('form');
+}
+
+function load_library($name){
+	$this->load->library($name);
 }
 
 function load_model($filename){
@@ -69,6 +73,7 @@ function PesanBaru(){
 }
 
 function Inbox(){
+$this->load->database();
 	$data['title']="Inbox";
 	$data['content']="sms_inbox";
 	$data['load']=$this;
@@ -111,6 +116,42 @@ function Draft(){
 	$data['parse']['db_data']=$this->m->ambil_data_sms_draft();
 	
 	
+	$this->header($data);
+	$this->view('body',$data);
+	$this->view('footer');
+}
+
+function History($type='inbox',$number=''){
+	$data['title']="History | $type";
+	$data['content']="history";
+	$data['load']=$this;
+	if($type == "inbox")
+		$datas=$this->m->ambil_data_sms_inbox(array('pengirim'=>$number));
+	elseif($type == "outbox")
+		$datas=$this->m->ambil_data_sms_draft();
+	else
+		$datas="";
+		
+	$data['parse']['db_data']=$datas;
+	$data['parse']['number']=$number;
+	$this->header($data);
+	$this->view('body',$data);
+	$this->view('footer');
+}
+
+function Detail($type='inbox',$pengirim=''){
+	$data['title']="Detail | $type";
+	$data['content']="detail";
+	$data['load']=$this;
+	if($type == "inbox")
+		$datas=$this->m->ambil_data_sms_inbox(array('pengirim'=>$pengirim));
+	elseif($type == "outbox")
+		$datas=$this->m->ambil_data_sms_draft();
+	else
+		$datas="";
+		
+	$data['parse']['db_data']=$datas;
+	$data['parse']['number']="";
 	$this->header($data);
 	$this->view('body',$data);
 	$this->view('footer');

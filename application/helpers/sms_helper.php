@@ -16,8 +16,18 @@ function get_css($filename){
 	return getbaseurl('assets','css_file',$filename);
 }
 
+function load_angularJS(){
+	return getbaseurl('assets','js_file',"angular.min.js");
+}
+
 function get_image_profile($filename){
 	return getbaseurl('assets','images','profile_pic',$filename);
+}
+
+function valid_phone($phone="+6285766776879"){
+	if(empty($phone))return "000";
+	echo str_replace("+62","0",$phone);
+	return;
 }
 
 
