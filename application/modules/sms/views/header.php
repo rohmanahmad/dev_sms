@@ -2,18 +2,15 @@
 <head>
  <title><?php if(isset($title))echo $title; else echo "untitle";?></title>
  <?php echo link_tag(get_bootstrap_css()); ?>
+ <?php echo link_tag(get_css("style.css")); ?>
 </head>
 <body>
-<div class="row">
- <div class="row" style="background:#000;color:#fff;">
-  <div class="col-md-9 col-md-push-1" style="height:50px;">REZStore</div>
-  <div class="col-md-1 col-md-pull-6">
-  
+ <header style="background:#000;color:#0ff;">
+  <div class="imgusr">
+	<?php echo img(array("src"=>get_image_profile('noimage.jpg'),"class"=>'img img-circle','width'=>'100%','height'=>'100%')); ?>
   </div>
- </div>
-	<div class="btn-group" role="group" aria-label="as">
-	  <button type="button" class="btn btn-default">Left</button>
-	  <button type="button" class="btn btn-default">Middle</button>
-	  <button type="button" class="btn btn-default">Right</button>
-	</div>
+  
+ </header>
+ 
+
 
