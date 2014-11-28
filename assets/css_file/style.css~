@@ -21,7 +21,7 @@ header{
   width:100px;
   height:100%;
   float:right;
-  margin-top:-35px;
+  margin-top:0px;
   margin-left:20px;
 }
 .button-group{

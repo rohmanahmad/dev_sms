@@ -50,7 +50,8 @@
 	}else if(type==="resi"){
 		val="No.Resi Pengiriman Anda Yaitu: [...]";
 	}else if(type==="konf"){
-		val="Konfirmasi pembayaran melalui sms center dengan format:\n Nama pemesan , ";
+		val="Konfirmasi pembayaran melalui sms center dengan format:
+				\n Nama pemesan , ";
 	}else{
 		val="Konfirmasi";
 	}

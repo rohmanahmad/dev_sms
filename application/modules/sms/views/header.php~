@@ -9,7 +9,7 @@
  <header style="background:#000;color:#0ff;">
   <div class="imglogo">
 	<?php echo img(array("src"=>get_logo(),'width'=>'25%','height'=>'100%')); ?>
-	<div class="textlogo"><h2>REZ</h2></div>
+	<div class="textlogo">REZ</div>
   </div>
   
   <div class="imgusr">

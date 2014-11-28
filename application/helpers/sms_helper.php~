@@ -24,7 +24,7 @@ function get_image_profile($filename){
 	return getbaseurl('assets','images','profile_pic',$filename);
 }
 
-function get_logo($filename="logo_2.png"){
+function get_logo($filename="logo.png"){
 	return getbaseurl('assets','images','logo',$filename);
 }
 
