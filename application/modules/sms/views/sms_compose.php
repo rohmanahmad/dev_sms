@@ -43,8 +43,15 @@
 <?php  echo form_close(); ?>
 </table> 
 <script>
- function norec(){
-	var text=document.getElementById("pesan_text").innerHTML();
-	alert(text);
+ function change_value(type){
+	if(type === "rec"){
+		var val="No.Rec yang tersedia :\n BRI : 112776287";
+	}elseif(type==="resi"){
+		var val="No.Resi Pengiriman Anda Yaitu: [...]";
+	}elseif(type==="konf"){
+		var val="Konfirmasi pembayaran melalui sms center dengan format:
+				\n Nama pemesan , ";
+	}
+	$("#pesan_text").attr("value",val);
  }
 </script>

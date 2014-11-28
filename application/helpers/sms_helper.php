@@ -24,6 +24,11 @@ function get_image_profile($filename){
 	return getbaseurl('assets','images','profile_pic',$filename);
 }
 
+
+function load_js($filename){
+	return getbaseurl('assets','js_file',$filename);
+}
+
 function valid_phone($phone="+6285766776879"){
 	if(empty($phone))return "000";
 	echo str_replace("+62","0",$phone);
