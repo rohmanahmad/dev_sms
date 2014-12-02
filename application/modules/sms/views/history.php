@@ -9,8 +9,7 @@
  <tr>
 	<th>No</th>
 	<th>Tanggal</th>
-	<th>Penerima</th>
-	<th>Pengirim</th>
+	<th>Kepada</th>
 	<th>Text</th>
  </tr>
  <tbody>
@@ -21,9 +20,8 @@
  ?>
 	 <tr>
 		<td><?=$n?></td>
-		<td><?=$r->tanggal?></td>
+		<td style="font-size:12px;width:20%"><?=$r->tanggal_masuk.br().'<font color="green">'.$r->tanggal_terbaca.'</font>'?></td>
 		<td><?=$r->penerima?></td>
-		<td><?=$r->pengirim?></td>
 		<td><?=$r->text_sms?></td>
 	 </tr>
  <?php $n++;

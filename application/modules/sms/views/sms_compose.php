@@ -1,28 +1,41 @@
-<table class ="table table-bordered">
+<?php if(isset($reply)){$width='width="100%"';}else{$width='';}?>
+<table class ="table table-bordered" <?=$width?>>
  <tr>
 	<td colspan="5"> SMS BARU 
 		<div class="button-group">
-			<?php echo form_open();
-					echo form_submit('submit','Kirim','class="btn btn-primary"').' ';
-					echo form_button('save','Save','class="btn btn-default"').' ';
+			<?php echo form_open('#','id="formInput"');
+					echo form_button('send','Kirim','class="btn btn-primary" onclick="send();"').' ';
+					echo form_button('save','Save','class="btn btn-default" onclick="saveDraft();"').' ';
 					echo form_reset('reset','Reset','class="btn btn-danger"').' ';
 					echo form_button('cancel','Cancel','class="btn btn-warning"');
-					?>
+			?>
 		</div>
+		<?php 
+		echo $success=$load->get_flash('success');
+		if (isset($error)){
+		 echo "<div class='error'>".
+			$err
+		 ."</div>";
+		}elseif(isset($success)){
+		 echo "<div class='success'>".
+			$success
+		 ."</div>";
+		}
+		?>
 	</td>
  </tr>
  <tr>
 	<td>Pengirim</td>
 		<td>:</td>
 			<td>
-				<?php echo form_input('pengirim','','style="width:100%;"'); ?>
+				<?php echo form_input('pengirim','','style="width:100%;" id="pengirim"'); ?>
 			</td>
  </tr>
  <tr>
 	<td>Penerima</td>
 		<td>:</td>
 			<td>
-				<?php echo form_input('penerima','','style="width:100%;"'); ?>
+				<?php echo form_input('penerima','','style="width:100%;" id="penerima"'); ?>
 			</td>
  </tr>
  <tr>
@@ -55,5 +68,33 @@
 		val="Konfirmasi";
 	}
 	$("#pesan_text").attr("value",val);
+ }
+ 
+ function saveDraft(){
+	
+ }
+ 
+ function execute_url(url){
+	var data={
+		'pengirim':$("#pengirim").val(),
+		'penerima':$("#penerima").val(),
+		'text_sms':$("#pesan_text").val()
+	}
+	$.ajax({
+        url: url,
+        type: 'post',
+        dataType: 'json',
+        data: data,
+        success: function(data) {
+                   alert();
+                 }
+    });
+ }
+ 
+ function send(){
+	
+	var url="<?=site('PesanBaru')?>";
+	//alert(url);
+	execute_url(url);
  }
 </script>

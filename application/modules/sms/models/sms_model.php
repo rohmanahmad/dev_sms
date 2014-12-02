@@ -1,30 +1,24 @@
 <?php
 class sms_model extends CI_Model{
   
- var $in,$out,$drft,$spm;
  function __construct(){
 	parent::__construct();
-	$this->in="sms_inbox";
-	$this->out="sms_outbox";
-	$this->spm="sms_spam";
-	$this->drft="sms_draft";
  }
  
  function ambil_data_sms_inbox($data=''){
 	if(is_array($data)) {
 		$this->db->where($data);
 		$this->db->order_by("status","ASC");
-		$this->db->order_by("tanggal","DESC");
+		$this->db->order_by("tanggal_masuk","DESC");
 		
-		return $this->db->get($this->in);
+		return $this->db->get(T_INBOX);
 	}
-	$this->db->order_by("status","ASC");
 	$this->db->group_by("penerima");
-	return $this->db->get($this->in);
+	return $this->db->get('(SELECT * FROM '.T_INBOX.' ORDER BY `status` ASC) f');
  }
  
  function ambil_data_sms_outbox(){
-	return $this->db->get($this->out);
+	return $this->db->get(T_OUTBOX);
  }
  
  function ambil_data_sms_spam(){
@@ -33,6 +27,24 @@ class sms_model extends CI_Model{
  
  function ambil_data_sms_draft(){
 	
+ }
+ 
+ function input_pesan_baru($data){
+	if(is_array($data)){
+		$this->db->insert(T_OUTBOX,$data);
+		return true;
+	}else{
+		return false;
+	}
+ }
+ 
+ function input_pesan_draft($data){
+	if(is_array($data)){
+		$this->db->insert(T_DRAFT,$data);
+		return true;
+	}else{
+		return false;
+	}
  }
 
 

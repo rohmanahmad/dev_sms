@@ -1,4 +1,4 @@
-<table class ="table table-bordered" style="max-width:95%;">
+<table class ="table table-bordered table-hover" style="max-width:95%;">
  <tr>
 	<td colspan="5"> SMS INBOX </td>
  </tr>
@@ -14,16 +14,19 @@
  if(isset($db_data)){ 
  $n=1;
 	foreach($db_data->result() as $r){
+		if($r->status == 0){$style='style="font-weight:bold;"';}else{$style='style="font-size:12px;"';}
  ?>
-	 <tr>
+	 <tr <?=$style?>>
 		<td><?=$n?></td>
-		<td><?=$r->tanggal?></td>
-		<td><?=anchor(site('history/inbox/'.$r->penerima),$r->penerima)?></td>
-		<td><?=anchor(site('history/inbox/'.$r->pengirim),$r->pengirim)?></td>
-		<td><?=anchor(site('detail/inbox/'.$r->pengirim),substr($r->text_sms,0,20)."_".$r->status)?></td>
+		<td><?=$r->tanggal_masuk.br().'<font color="green">'.$r->tanggal_terbaca.'</font>'?></td>
+		<td><?=$r->penerima?></td>
+		<td><?=$r->pengirim?></td>
+		<td><?=anchor(site('detail/inbox/'.$r->pengirim),substr($r->text_sms,0,20))?></td>
 	 </tr>
  <?php $n++;
 	}
+	//anchor(site('history/inbox/'.$r->penerima),'');
+	//anchor(site('history/inbox/'.$r->pengirim),'');
  } ?>
  </tbody>
 

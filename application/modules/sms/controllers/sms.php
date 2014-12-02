@@ -11,6 +11,16 @@ function load_form(){
 	$this->load->helper('form');
 }
 
+function set_flash($name,$val){
+	$this->load->library('session');
+	$this->session->set_flashdata($name,$val);
+}
+
+function get_flash($name){
+	$this->load->library('session');
+	$this->session->flashdata($name);
+}
+
 function load_library($name){
 	$this->load->library($name);
 }
@@ -54,22 +64,46 @@ function index(){
 	$this->Inbox();
 }
 
-function PesanBaru(){
-	if($_POST){
-	 $pengirim=$this->post('pengirim');
-	 $penerima=$this->post('penerima');
-	 $pesan_text=$this->post('pesan_text');
-	 $data=array();
-	}
+function PesanBaru($action='send'){
 	$data['title']="Pesan Baru";
 	$data['content']="sms_compose";
 	$data['load']=$this;	
 	$data['parse']="";
 	$this->load_form();
 	
-	$this->header($data);
-	$this->view('body',$data);
-	$this->view('footer');
+	if($_POST){
+	 $pengirim=$this->post('pengirim');
+	 $penerima=$this->post('penerima');
+	 $pesan_text=$this->post('pesan_text');
+	 $data=array('pengirim'=>$pengirim,
+				 'penerima'=>$penerima,
+				 'text_sms'=>$pesan_text,
+				 'tanggal'=>date('Y-m-d g:i:s')
+				);
+		if($pengirim !== "" AND $penerima !== "" AND $pesan_text !== "")
+		{
+		 if($action=="send"){
+		 //untuk pesan baru disimpan pd kotak keluar dg status 2(pending)
+		 $process=$this->m->input_pesan_baru($data);
+		 }else{
+		 //untuk pesan baru disimpan pd kotak draft dg status 0(pending)
+		 $process=$this->m->input_pesan_draft($data);
+		 }
+		 if($process==true)
+		 $this->set_flash('success',"data berhasil di inputkan");
+		 redirect(site('PesanBaru'));
+		}else{
+		 $data['parse']['error']="tidak boleh ada kolom yang kosong!";
+		}
+	}elseif($_GET){
+		$data['reply']='true';
+		$this->view('body',$data);
+	}else{
+		$this->header($data);
+		$this->view('body',$data);
+		$this->view('footer');	
+	}
+	
 }
 
 function Inbox(){

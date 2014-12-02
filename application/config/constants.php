@@ -36,6 +36,10 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
-
+#---------------------------
+	define('T_INBOX',"sms_inbox");
+	define('T_OUTBOX',"sms_outbox");
+	define('T_SPAM',"sms_spam");
+	define('T_DRAFT',"sms_draft");
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
